@@ -63,32 +63,32 @@ def send_packet():
     if dropDownValue=="TCP":
         result = rp.tcp(ipValue,int(portValue))
         print(result)
-        my_tree.insert(parent ='',iid=0,index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'TCP',result[2],result[3]))
+        my_tree.insert(parent ='',index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'TCP',result[2],result[3]))
 
     elif dropDownValue=="UDP":
         rp.udp(host=ipValue,port=int(portValue))
         # result = rp.udp(host=ipValue,port=int(portValue))
         # print(f"Result: {result}")
-        my_tree.insert(parent ='',iid=0,index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'UDP',result[2],result[3]))
+        my_tree.insert(parent ='',iid=1,index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'UDP',result[2],result[3]))
 
     elif dropDownValue=="SSL":
         rp.ssl(host=ipValue,port=int(portValue))
 
     elif dropDownValue=="HTTP GET":
         result = rp.httpGet(host=ipValue)
-        my_tree.insert(parent ='',iid=0,index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'HTTP GET',result[2],result[3]))
+        my_tree.insert(parent ='',index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'HTTP GET',result[2],result[3]))
 
     elif dropDownValue=="HTTPS GET":
         result = rp.httpsGet(host=ipValue)
-        my_tree.insert(parent ='',iid=0,index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'HTTPS GET',result[2],result[3]))
+        my_tree.insert(parent ='',index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'HTTPS GET',result[2],result[3]))
 
     elif dropDownValue=="HTTP POST":
         result = rp.httpPost(host=ipValue,path=pathValue,data=dataValue)
-        my_tree.insert(parent ='',iid=0,index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'HTTP POST',result[2],result[3]))
+        my_tree.insert(parent ='',index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'HTTP POST',result[2],result[3]))
 
     elif dropDownValue=="HTTPS POST":
         result = rp.httpsPost(host=ipValue,path=pathValue,data=dataValue)
-        my_tree.insert(parent ='',iid=0,index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'HTTPS POST',result[2],result[3]))
+        my_tree.insert(parent ='',index=0,values=(str(datetime.now()).split(" ")[1].split(".")[0],result[0],result[1],ipValue,portValue,'HTTPS POST',result[2],result[3]))
 
 #send button
 sendButton = Button(frame, text = "SEND", fg= "black", command=send_packet).pack()#add send function

@@ -26,15 +26,16 @@ def tcp(host,port):
 # Run `nc -ul -p 4444` to verify udp connection
 def udp(host,port):
     client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    print(client.getpeername())
-    fromIP = client.getsockname()[0]
-    fromPort = client.getsockname()[1]
-    client.sendto(b"Hello",(host,port))
+    # print(client.getpeername())
+    # fromIP = client.getsockname()[0]
+    # fromPort = client.getsockname()[1]
+    client.sendto(b"Hello Aditi",(host,port))
     response = client.recv(4096)
+    client.close()
     asciiResponse = response.decode()
     hexResponse = response.hex()    
     # print(fromIP)
-    return fromIP,fromPort,asciiResponse,hexResponse
+    # return fromIP,fromPort,asciiResponse,hexResponse
 
 def ssl(host,port):
     with socket.create_connection((host, port)) as sock:
@@ -64,15 +65,16 @@ def httpsGet(host):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((host,port))
     fromIP = client.getsockname()[0]
-    fromPort = client.getsockname()[1]
+    fromPort = port
     # client.send(b'GET / HTTP1.1\r\nHost: www.google.com\r\n\r\n')
-    client.send((f'GET / HTTP/1.1\r\nHost: www.{host}\r\n\r\n').encode('utf-8'))    
+    client.send((f'GET / HTTPS/1.1\r\nHost: www.{host}\r\n\r\n').encode('utf-8'))    
     response = client.recv(4096)
     asciiResponse = response.decode()
     hexResponse = response.hex()
     # print('\n\n\n\n')
-    # print(response.hex())
-    return fromIP,fromPort,asciiResponse,hexResponse
+    print(response.hex())
+    print(fromIP,fromPort,asciiResponse,hexResponse)
+    # return fromIP,fromPort,asciiResponse,hexResponse
 
 def httpPost(host,path,data):
     data = data
@@ -108,6 +110,7 @@ def httpsPost(host,path,data):
 
 # ssl("138.197.192.84",443)
 # tcp(host=host,port=port)
-# udp(host="192.168.1.33",port=4444)
+udp(host="192.168.1.33",port=4444)
 # httpPost("httpbin.org","post","another=value&param=with")
-httpsPost("httpbin.org","post","another=value&param=with")
+# httpsPost("httpbin.org","post","another=value&param=with")
+# httpsGet("google.com")
