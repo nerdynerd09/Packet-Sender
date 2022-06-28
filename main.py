@@ -1,8 +1,6 @@
-import re
 from tkinter import *
 from tkinter import ttk
 
-from paramiko import HostKeys
 # from request_packet import tcp
 import request_packet as rp
 from datetime import datetime
